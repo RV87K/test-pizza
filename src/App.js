@@ -6,14 +6,14 @@ import PizzaBlock from './components/PizzaBlock';
 import './scss/app.scss';
 
 function App() {
+  const [items, setItems] = React.useState([]);
+  React.useEffect(() => {
+    fetch('https://6508872656db83a34d9c788f.mockapi.io/items')
+      .then((res) => res.json())
+      .then((json) => setItems(json))},
+    []);
 
-  const [items, setItems] = React.useState([])
-
-  fetch('https://6508872656db83a34d9c788f.mockapi.io/items')
-    .then(res => res.json())
-    .then(json => setItems(json))
-
-    // console.log(items)
+  console.log(items);
 
   return (
     <div className="wrapper">
@@ -26,7 +26,9 @@ function App() {
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
-            <PizzaBlock />
+            {items.map((obj, i) => (
+              <PizzaBlock key={obj.id} {...obj} />
+            ))}
           </div>
         </div>
       </div>
