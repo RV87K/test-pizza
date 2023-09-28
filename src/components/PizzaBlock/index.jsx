@@ -1,18 +1,19 @@
 import React from 'react';
+import Skeleton from './Skeleton'
 
 export default function PizzaBlock({ title, imageUrl, types, sizes, price }) {
-  const [typeSelected, setTypeSelected] = React.useState(0);
-  const [sizeSelected, setSizeSelected] = React.useState(0);
+  const [activeType, setActiveType] = React.useState(0);
+  const [activeSize, setActiveSize] = React.useState(0);
   const typeName = ['тонкое', 'традиционное'];
 
   const onClickTypes = (i) => {
-    setTypeSelected(i);
+    setActiveType(i);
   };
 
   const onClickSizes = (i) => {
-    setSizeSelected(i);
+    setActiveSize(i);
   };
-  console.log(sizes);
+  
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
@@ -20,14 +21,14 @@ export default function PizzaBlock({ title, imageUrl, types, sizes, price }) {
       <div className="pizza-block__selector">
         <ul>
           {types.map((typeIndex, i) => (
-            <li onClick={() => onClickTypes(i)} className={typeSelected === i ? 'active' : ''}>
+            <li onClick={() => onClickTypes(i)} className={activeType === i ? 'active' : ''}>
               {typeName[typeIndex]}
             </li>
           ))}
         </ul>
         <ul>
           {sizes.map((sizeItem, i) => (
-            <li onClick={() => onClickSizes(i)} className={sizeSelected === i ? 'active' : ''}>
+            <li onClick={() => onClickSizes(i)} className={activeSize === i ? 'active' : ''}>
               {sizeItem} см.
             </li>
           ))}
