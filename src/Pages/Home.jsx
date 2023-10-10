@@ -11,13 +11,18 @@ export default function Home() {
   const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'rating' });
 
   React.useEffect(() => {
-    fetch('https://6508872656db83a34d9c788f.mockapi.io/items')
+    const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
+    const sortBy = sortType.sortProperty.replace('-', '');
+    const category = categoryId > 0 ? `category=${categoryId}` : '';
+    fetch(
+      `https://6508872656db83a34d9c788f.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`,
+    )
       .then((res) => res.json())
       .then((json) => {
         setItems(json);
         setSetIsLoading(false);
       });
-  }, []);
+  }, [categoryId, sortType]);
   return (
     <>
       <div className="content__top">

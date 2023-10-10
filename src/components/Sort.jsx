@@ -2,9 +2,12 @@ import React from 'react';
 
 export default function Sort({ value, onChangeSort }) {
   const list = [
-    { name: 'популярности', sortProperty: 'rating' },
-    { name: 'цене', sortProperty: 'price' },
-    { name: 'алфавиту', sortProperty: 'title' },
+    { name: 'популярности (DESC)', sortProperty: 'rating'},
+    { name: 'популярности (ASC)', sortProperty: '-rating'},
+    { name: 'цене (DESC)', sortProperty: 'price'},
+    { name: 'цене (ASC)', sortProperty: '-price'},
+    { name: 'алфавиту (DESC)', sortProperty: 'title' },
+    { name: 'алфавиту (ASC)', sortProperty: '-title' },
   ];
   console.log(value);
   const [open, setOpen] = React.useState(false);
