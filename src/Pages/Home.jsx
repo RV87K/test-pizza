@@ -9,6 +9,7 @@ export default function Home() {
   const [isLoading, setSetIsLoading] = React.useState(true);
   const [categoryId, setCategoryId] = React.useState(0);
   const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'rating' });
+  
 
   React.useEffect(() => {
     const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
