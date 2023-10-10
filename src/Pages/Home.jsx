@@ -4,12 +4,11 @@ import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 
-export default function Home() {
+export default function Home({ searchValue, setSearchValue }) {
   const [items, setItems] = React.useState([]);
   const [isLoading, setSetIsLoading] = React.useState(true);
   const [categoryId, setCategoryId] = React.useState(0);
   const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'rating' });
-  
 
   React.useEffect(() => {
     const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
@@ -23,6 +22,7 @@ export default function Home() {
         setItems(json);
         setSetIsLoading(false);
       });
+      window.scrollTo(0, 0);
   }, [categoryId, sortType]);
   return (
     <>

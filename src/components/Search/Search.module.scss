@@ -5,29 +5,26 @@
 
 .input {
   width: 300px;
-  border: 1px solid rgba(0,0,0,0.1);
-  padding: 8px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 20px;
   padding-left: 35px;
   border-radius: 10px;
   font-size: 16px;
 
   &:focus {
-    border: 1px solid rgba(0,0,0,0.3);
+    border: 1px solid rgba(0, 0, 0, 0.3);
   }
 }
 
-.searchIcon {
+.icon {
   position: absolute;
   top: 9px;
-  left: 7px;
-  width: 23px;
-  height: 23px;
+  left: 12px;
+  width: 22px;
+  height: 22px;
   opacity: 0.3;
-
-  &:hover {
-    opacity: 0.6;
-  }
 }
+
 .closeIcon {
   position: absolute;
   top: 11px;
