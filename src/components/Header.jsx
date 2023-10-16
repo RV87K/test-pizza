@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Search from './Search';
 
 export default function Header({ searchValue, setSearchValue }) {
+  
   return (
     <div className="header">
       <div className="container">

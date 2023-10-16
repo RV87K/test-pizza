@@ -4,11 +4,18 @@ import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
 
-export default function Home({ searchValue, setSearchValue }) {
+export default function Home({ searchValue }) {
   const [items, setItems] = React.useState([]);
   const [isLoading, setSetIsLoading] = React.useState(true);
   const [categoryId, setCategoryId] = React.useState(0);
   const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'rating' });
+
+  console.log(searchValue);
+
+  const skeleton = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
+  const pizzas = items
+    .filter((obj) => obj.title.toLowerCase().includes(searchValue.toLowerCase()))
+    .map((obj, i) => <PizzaBlock key={i} {...obj} />);
 
   React.useEffect(() => {
     const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
@@ -22,7 +29,7 @@ export default function Home({ searchValue, setSearchValue }) {
         setItems(json);
         setSetIsLoading(false);
       });
-      window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, [categoryId, sortType]);
   return (
     <>
@@ -31,11 +38,7 @@ export default function Home({ searchValue, setSearchValue }) {
         <Sort value={sortType} onChangeSort={(obj) => setSortType(obj)} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
-      <div className="content__items">
-        {isLoading
-          ? [...new Array(6)].map((_, i) => <Skeleton key={i} />)
-          : items.map((obj, i) => <PizzaBlock key={i} {...obj} />)}
-      </div>
+      <div className="content__items">{isLoading ? skeleton : pizzas}</div>
     </>
   );
 }

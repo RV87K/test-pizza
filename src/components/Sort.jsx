@@ -9,7 +9,7 @@ export default function Sort({ value, onChangeSort }) {
     { name: 'алфавиту (DESC)', sortProperty: 'title' },
     { name: 'алфавиту (ASC)', sortProperty: '-title' },
   ];
-  console.log(value);
+
   const [open, setOpen] = React.useState(false);
   const onClickSelected = (obj) => {
     onChangeSort(obj);
