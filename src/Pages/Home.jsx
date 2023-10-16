@@ -10,8 +10,6 @@ export default function Home({ searchValue }) {
   const [categoryId, setCategoryId] = React.useState(0);
   const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'rating' });
 
-  console.log(searchValue);
-
   const skeleton = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
   const pizzas = items
     .filter((obj) => obj.title.toLowerCase().includes(searchValue.toLowerCase()))
