@@ -3,14 +3,16 @@ import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
-import Pagination from '../components/Pagination'
+import Pagination from '../components/Pagination';
+import { SearchContext } from '../App';
 
-export default function Home({ searchValue }) {
+export default function Home() {
   const [items, setItems] = React.useState([]);
   const [isLoading, setSetIsLoading] = React.useState(true);
   const [categoryId, setCategory] = React.useState(0);
   const [sortType, setSortType] = React.useState({ name: 'популярности', sortProperty: 'rating' });
-  const [currentPage, setCurrentPage] = React.useState(1)
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const { searchValue } = React.useContext(SearchContext);
 
   const skeletons = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
   const pizzas = items
@@ -31,7 +33,7 @@ export default function Home({ searchValue }) {
       });
     window.scrollTo(0, 0);
   }, [categoryId, sortType, searchValue, currentPage]);
-  console.log(currentPage)
+  console.log(currentPage);
   return (
     <div className="container">
       <div className="content__top">
