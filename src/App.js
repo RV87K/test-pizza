@@ -5,14 +5,29 @@ import './scss/app.scss';
 import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';
 import Cart from './Pages/Cart';
+import { useSelector, useDispatch } from 'react-redux';
+import { decrement, increment } from './redux/slice/counterSlice';
 
 export const SearchContext = React.createContext('');
 function App() {
   const [searchValue, setSearchValue] = React.useState('');
+  const count = useSelector((state) => state.counter.value)
+  const dispatch = useDispatch()
 
   return (
     <div className="wrapper">
-      <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+      <div>
+        <div>
+          <button aria-label="Increment value" onClick={() => dispatch(increment())}>
+            Increment
+          </button>
+          <span>{count}</span>
+          <button aria-label="Decrement value" onClick={() => dispatch(decrement())}>
+            Decrement
+          </button>
+        </div>
+      </div>
+      {/* <SearchContext.Provider value={{ searchValue, setSearchValue }}>
         <Header />
         <div className="content">
           <div className="container">
@@ -23,7 +38,7 @@ function App() {
             </Routes>
           </div>
         </div>
-      </SearchContext.Provider>
+      </SearchContext.Provider> */}
     </div>
   );
 }
