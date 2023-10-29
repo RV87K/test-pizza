@@ -7,7 +7,6 @@ export default function Search() {
   const { setSearchValue } = React.useContext(SearchContext);
   const [value, setValue] = React.useState('');
   const inputRef = React.useRef(SearchContext);
-  console.log();
 
   const onClickClear = () => {
     setSearchValue('');
