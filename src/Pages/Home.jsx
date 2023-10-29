@@ -8,7 +8,6 @@ import Pagination from '../components/Pagination';
 import { SearchContext } from '../App';
 import { setCategoryId } from '../redux/slice/filterSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 
 export default function Home() {
   const { categoryId, sort } = useSelector((state) => state.filter);

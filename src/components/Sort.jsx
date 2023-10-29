@@ -21,8 +21,8 @@ export default function Sort() {
     setOpen(false);
   };
   return (
-    <div class="sort">
-      <div class="sort__label">
+    <div className="sort">
+      <div className="sort__label">
         <svg
           width="10"
           height="6"
@@ -38,12 +38,12 @@ export default function Sort() {
         <span onClick={() => setOpen(!open)}>{sort.name}</span>
       </div>
       {open && (
-        <div class="sort__popup">
+        <div className="sort__popup">
           <ul>
             {list.map((obj, i) => (
               <li
                 onClick={() => onClickSelected(obj)}
-                class={sort.sortProperty === obj.sortProperty ? 'active' : ''}>
+                className={sort.sortProperty === obj.sortProperty ? 'active' : ''}>
                 {obj.name}
               </li>
             ))}
