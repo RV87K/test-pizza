@@ -11,6 +11,7 @@ export const sortList = [
   { name: 'алфавиту (ASC)', sortProperty: '-title' },
 ];
 export default function Sort() {
+  const sortRef = React.useRef()
   const dispatch = useDispatch();
   const sort = useSelector((state) => state.filter.sort);
 
@@ -20,8 +21,23 @@ export default function Sort() {
     dispatch(setSort(obj));
     setOpen(false);
   };
+
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.composedPath().includes(sortRef.current)) {
+        setOpen(false)
+      }
+    }
+    document.body.addEventListener('click', handleClickOutside)
+
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside)
+    }
+  })
+
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
@@ -42,6 +58,7 @@ export default function Sort() {
           <ul>
             {sortList.map((obj, i) => (
               <li
+                key={i}
                 onClick={() => onClickSelected(obj)}
                 className={sort.sortProperty === obj.sortProperty ? 'active' : ''}>
                 {obj.name}
