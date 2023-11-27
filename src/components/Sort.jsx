@@ -33,7 +33,7 @@ export default function Sort() {
     return () => {
       document.body.removeEventListener('click', handleClickOutside)
     }
-  })
+  }, [])
 
 
   return (

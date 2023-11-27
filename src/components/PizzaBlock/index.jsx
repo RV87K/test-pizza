@@ -1,10 +1,14 @@
 import React from 'react';
-import Skeleton from './Skeleton'
+import { useSelector, useDispatch } from 'react-redux';
+import { addItem } from '../../redux/slice/cartSlice';
 
-export default function PizzaBlock({ title, imageUrl, types, sizes, price }) {
+export default function PizzaBlock({ id, title, imageUrl, types, sizes, price }) {
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
   const typeName = ['тонкое', 'традиционное'];
+
+  const dispatch = useDispatch()
+
 
   const onClickTypes = (i) => {
     setActiveType(i);
@@ -13,7 +17,21 @@ export default function PizzaBlock({ title, imageUrl, types, sizes, price }) {
   const onClickSizes = (i) => {
     setActiveSize(i);
   };
-  
+
+  const onClickAdd = () => {
+    const item = {
+      id,
+      title,
+      imageUrl,
+      types: typeName[activeType],
+      sizes: activeSize,
+      price,
+    }
+    console.log('addItem')
+    
+    dispatch(addItem(item))
+  }
+
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
@@ -21,14 +39,20 @@ export default function PizzaBlock({ title, imageUrl, types, sizes, price }) {
       <div className="pizza-block__selector">
         <ul>
           {types.map((typeIndex, i) => (
-            <li key={i} onClick={() => onClickTypes(i)} className={activeType === i ? 'active' : ''}>
+            <li
+              key={i}
+              onClick={() => onClickTypes(i)}
+              className={activeType === i ? 'active' : ''}>
               {typeName[typeIndex]}
             </li>
           ))}
         </ul>
         <ul>
           {sizes.map((sizeItem, i) => (
-            <li key={i} onClick={() => onClickSizes(i)} className={activeSize === i ? 'active' : ''}>
+            <li
+              key={i}
+              onClick={() => onClickSizes(i)}
+              className={activeSize === i ? 'active' : ''}>
               {sizeItem} см.
             </li>
           ))}
@@ -36,7 +60,7 @@ export default function PizzaBlock({ title, imageUrl, types, sizes, price }) {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div className="button button--outline button--add">
+        <div onClick={onClickAdd} className="button button--outline button--add">
           <svg
             width="12"
             height="12"
