@@ -8,7 +8,7 @@ import { SearchContext } from '../App';
 import { setCategoryId, setCurrentPage, setFilters } from '../redux/slice/filterSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import qs from 'qs';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchPizza } from '../redux/slice/pizzaSlice';
 
 export default function Home() {
@@ -32,7 +32,11 @@ export default function Home() {
 
       return false;
     })
-    .map((obj) => <PizzaBlock key={obj.id} {...obj} />);
+    .map((obj) => (
+      <Link to={`/pizza/${obj.id}`}>
+        <PizzaBlock key={obj.id} {...obj} />
+      </Link>
+    ));
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
