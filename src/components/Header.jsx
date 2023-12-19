@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 export default function Header() {
   const { items, totalPrice } = useSelector((state) => state.cart);
-  const { searchValue, setSearchValue } = React.useContext(SearchContext);
+  // const { searchValue, setSearchValue } = React.useContext(SearchContext);
   const location = useLocation();
   const totalCount = items.reduce((sum, item) => item.count + sum, 0);
 
@@ -23,7 +23,7 @@ export default function Header() {
             </div>
           </div>
         </Link>
-        <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+        <Search />
         <div className="header__cart">
           {location.pathname !== '/cart' && (
             <Link to="/cart" className="button button--cart">

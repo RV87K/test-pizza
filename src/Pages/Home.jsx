@@ -20,7 +20,7 @@ export default function Home() {
   const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
   const sortType = sort.sortProperty;
 
-  const { searchValue } = React.useContext(SearchContext);
+  const { searchValue } = useSelector((state) => state.filter)
   const { items, status } = useSelector((state) => state.pizza);
 
   const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
